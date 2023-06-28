@@ -1,0 +1,79 @@
+In file explorer:
+local lsp = require('lsp-zero')
+
+Create file: %
+Create directory: d
+
+
+Vim Motions:
+Normal Mode:
+
+Open line - Create a line below and enters insert mode: o
+Explore - Go back to file explorer: :Ex
+Go Goto mode: g
+Append to line: A
+Search file in all files: Space + p + f
+Search file in git files: Ctrl + p
+Search word in project: Space + p + s
+Open Harpoon: Ctrl + e
+Save Harpoon: Space + a
+Harpoon Up: Ctrl + t
+Harpoon Down: Ctrl + h
+Undotree: Space + u
+Open Git Status: Space + gs
+Switch windows: Ctrl + ww
+Mark lines(enter visual mode): v
+Go half page up: Ctrl + u
+Go half page down: Ctrl + d
+
+
+Visual mode
+
+Move code(while line are marked): Shift + k (or) l
+
+
+Goto mode
+Last line: $
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

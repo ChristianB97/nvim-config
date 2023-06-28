@@ -1,0 +1,31 @@
+1. Create and delete file
+
+2. Search for a file in project files by file name
+
+3. Search for a file in git files by file name
+
+3. Search for a file by content
+
+4. Clean Harpoon
+
+5. Save two files with Harpoon
+
+6. Switch in between files with Harpoon
+
+7. Öffne Undotree und und wähle eine vorherige Version aus, schreibe etwas und mache es wieder rückgängig
+
+8. Öffne Git Status
+
+9. Gehe in eine TS-Datei und nutze die Autovervollständigung(Vorschläge hoch, runter und auswählen)
+
+10. Nutzen * innerhalb der Suche einer Datei 
+
+11. Halbe Seite hoch unter runter scrollen
+
+12. Markieren, kopieren und einfügen
+
+13. Ersetze alle "Search" mit "Find" in dieser Datei
+
+14. Kopiere und füge ein global und lokal
+
+15. Wechsel in das Terminal und wieder zurück im nvim
