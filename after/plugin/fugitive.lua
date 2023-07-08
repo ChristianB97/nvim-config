@@ -1,2 +1,2 @@
 vim.keymap.set("n", "<leader>gs", vim.cmd.Git)
-vim.keymap.set("n", "<leader>gp", vim.cmd.Git_Push)
+vim.keymap.set("n", "<leader>gp", vim.cmd.Git_push)
