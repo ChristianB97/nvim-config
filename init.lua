@@ -1,7 +1,7 @@
 require("config");
 
 local function executeBashScript(scriptPath)
-    local command = string.format("bash %s", scriptPath)
+local command = string.format("bash %s", scriptPath)
     local handle = io.popen(command)
     local output = handle:read("*a")
     handle:close()
