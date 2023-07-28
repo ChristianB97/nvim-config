@@ -54,7 +54,16 @@ vim.keymap.set("n", "<leader>c", function()
     end
 end)
 
-vim.keymap.set("n", "<leader>gp", function()
+vim.keymap.set("n", "<leader>p", function()
+    local check_changes = io.popen('git diff --exit-code')
+    local changes = check_changes:read("*a")
+    check_changes:close()
+    
+    if changes ~= "" then
+        print("There are changes, please commit them before pushing.")
+        return
+    end
+    
     local handle = io.popen('git rev-parse --abbrev-ref HEAD')
     local current_branch = handle:read("*a"):gsub("\n", "")
     handle:close()
