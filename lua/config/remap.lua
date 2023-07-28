@@ -41,9 +41,13 @@ vim.keymap.set("n", "<leader><leader>", function()
 	vim.cmd("so")
 end)
 
-vim.keymap.set("n", "<leader>gt", function()
+vim.keymap.set("n", "<leader>gc", function()
+    local has_changes = vim.fn.systemlist('git diff-index --quiet HEAD --')
+    if #!has_changes then
+        print("No changes");
+        return
+    end
     local commit_msg = vim.fn.input("Commit: ");
     vim.cmd("!git add .");
     vim .cmd("!git commit -m " .. vim.fn.shellescape(commit_msg));
-    vim.cmd("!git push");
 end)
