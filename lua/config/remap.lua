@@ -105,7 +105,7 @@ end)
 vim.keymap.set("n", "<leader>gs", function()
     local branch_name = vim.fn.input("Goto branch (~˘▾˘)~ ")
     if branch_name ~= "" then
-        local handle = io.popen('git checkout -b ' .. vim.fn.shellescape(branch_name) .. ' 2>&1')
+        local handle = io.popen('git checkout ' .. vim.fn.shellescape(branch_name) .. ' 2>&1')
         local result = handle:read("*a")
         handle:close()
 
