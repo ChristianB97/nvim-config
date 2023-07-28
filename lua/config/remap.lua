@@ -29,14 +29,14 @@ vim.keymap.set("n", "<leader>vpp", "<cmd>e ~/.dotfiles/nvim/.config/nvim/lua/the
 vim.keymap.set("n", "<leader>mr", "<cmd>CellularAutomaton make_it_rain<CR>")
 
 vim.keymap.set("n", "<leader>c", function()
-    local handle = io.popen('git diff-index --quiet HEAD -- ; echo $?')
+    local handle = io.popen('git status --short')
     local result = handle:read("*a")
     handle:close()
 
-    if string.match(result, '^0') then
-        print('No changes')
+    if result == "" then
+        print('No changes ⊙▂⊙) ')
     else
-        local commit_msg = vim.fn.input("Commit: ")
+        local commit_msg = vim.fn.input("Commit (☞ﾟヮﾟ)☞ ")
         if commit_msg == "" then
             print("Empty commit message. Commit aborted.")
         else
@@ -53,6 +53,7 @@ vim.keymap.set("n", "<leader>c", function()
         end
     end
 end)
+
 
 vim.keymap.set("n", "<leader>p", function()
     local check_changes = io.popen('git diff --exit-code')
