@@ -25,10 +25,7 @@ vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
 vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
 
-vim.keymap.set("n", "<leader>vpp", "<cmd>e ~/.dotfiles/nvim/.config/nvim/lua/theprimeagen/packer.lua<CR>")
-vim.keymap.set("n", "<leader>mr", "<cmd>CellularAutomaton make_it_rain<CR>")
-
-vim.keymap.set("n", "<leader>c", function()
+vim.keymap.set("n", "<leader>gc", function()
     local handle = io.popen('git status --short')
     local result = handle:read("*a")
     handle:close()
@@ -38,7 +35,7 @@ vim.keymap.set("n", "<leader>c", function()
     else
         local commit_msg = vim.fn.input("Commit (☞ﾟヮﾟ)☞ ")
         if commit_msg == "" then
-            print("Empty commit message. Commit aborted.")
+            print("┐(´•_•`)┌ Empty commit message")
         else
             commit_msg = commit_msg:gsub(",%s*", "\n")
             vim.fn.jobstart('git add . && git commit -m ' .. vim.fn.shellescape(commit_msg), {
@@ -55,7 +52,7 @@ vim.keymap.set("n", "<leader>c", function()
 end)
 
 
-vim.keymap.set("n", "<leader>p", function()
+vim.keymap.set("n", "<leader>gp", function()
     local handle = io.popen('git rev-parse --abbrev-ref HEAD')
     local current_branch = handle:read("*a"):gsub("\n", "")
     handle:close()
@@ -84,5 +81,19 @@ vim.keymap.set("n", "<leader>p", function()
             end
         end
     })
+end)
+
+vim.keymap.set("n", "<leader>gb", function()
+    local branch_name = vim.fn.input("New branch (~˘▾˘)~ ")
+    if branch_name ~= "" then
+        local output = os.execute('git checkout -b ' .. vim.fn.shellescape(branch_name))
+        if output == true then
+            print("(･o･)ง Branch created and switched to: " .. branch_name)
+        else
+            print("(。_°)☆ Failed to create branch: " .. branch_name)
+        end
+    else
+        print("┐(´•_•`)┌ No branch name provided")
+    end
 end)
 
