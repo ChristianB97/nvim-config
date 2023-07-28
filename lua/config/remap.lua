@@ -83,17 +83,38 @@ vim.keymap.set("n", "<leader>gp", function()
     })
 end)
 
+
+
 vim.keymap.set("n", "<leader>gb", function()
     local branch_name = vim.fn.input("New branch (~˘▾˘)~ ")
     if branch_name ~= "" then
-        local output = os.execute('git checkout -b ' .. vim.fn.shellescape(branch_name))
-        if output == true then
+        local handle = io.popen('git checkout -b ' .. vim.fn.shellescape(branch_name) .. ' 2>&1')
+        local result = handle:read("*a")
+        handle:close()
+        
+        if string.find(result, "Switched to a new branch") then
             print("(･o･)ง Branch created and switched to: " .. branch_name)
         else
-            print("(。_°)☆ Failed to create branch: " .. branch_name)
+            print("(•ิ_•ิ)? Failed to create branch: " .. branch_name)
         end
     else
         print("┐(´•_•`)┌ No branch name provided")
     end
 end)
 
+vim.keymap.set("n", "<leader>gs", function()
+    local branch_name = vim.fn.input("Goto branch (~˘▾˘)~ ")
+    if branch_name ~= "" then
+        local handle = io.popen('git checkout ' .. vim.fn.shellescape(branch_name) .. ' 2>&1')
+        local result = handle:read("*a")
+        handle:close()
+
+        if string.find(result, "Switched to branch") then
+            print("(･o･)ง Branch switched to " .. branch_name)
+        else
+            print("(•ิ_•ิ)? Failed to switch to " .. branch_name)
+        end
+    else
+        print("┐(´•_•`)┌ No branch name provided")
+    end
+end)
