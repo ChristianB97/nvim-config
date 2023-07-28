@@ -56,18 +56,18 @@ end)
 
 
 vim.keymap.set("n", "<leader>p", function()
-    local check_changes = io.popen('git diff --exit-code')
-    local changes = check_changes:read("*a")
-    check_changes:close()
-
-    if changes ~= "" then
-        print("(≖_≖ ) Nothing commited")
-        return
-    end
-
     local handle = io.popen('git rev-parse --abbrev-ref HEAD')
     local current_branch = handle:read("*a"):gsub("\n", "")
     handle:close()
+
+    local handle_pushed = io.popen('git log origin/' .. current_branch .. '..' .. current_branch)
+    local not_pushed = handle_pushed:read("*a")
+    handle_pushed:close()
+
+    if not_pushed == "" then
+        print("(≖_≖ ) Nothing to push")
+        return
+    end
 
     vim.fn.jobstart('git push origin ' .. current_branch, {
         on_stderr = function(j, data, event)
@@ -85,3 +85,4 @@ vim.keymap.set("n", "<leader>p", function()
         end
     })
 end)
+
