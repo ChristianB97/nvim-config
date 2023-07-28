@@ -42,12 +42,14 @@ vim.keymap.set("n", "<leader><leader>", function()
 end)
 
 vim.keymap.set("n", "<leader>gc", function()
-    local has_changes = vim.fn.systemlist('git diff-index --quiet HEAD --')
-    if not has_changes then
-        vim.cmd("!echo 'No changes'");
-        return
+    local handle = io.popen('git diff-index --quiet HEAD -- ; echo $?')
+    local result = handle:read("*a")
+    handle:close()
+
+    if string.match(result, '^0') then
+        print('No changes')
+    else
+        local commit_msg = vim.fn.input("Commit: ")
+        os.execute('git add . && git commit -m ' .. vim.fn.shellescape(commit_msg))
     end
-    local commit_msg = vim.fn.input("Commit: ");
-    vim.cmd("!git add .");
-    vim .cmd("!git commit -m " .. vim.fn.shellescape(commit_msg));
 end)
