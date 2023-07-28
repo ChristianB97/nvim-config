@@ -44,7 +44,7 @@ end)
 vim.keymap.set("n", "<leader>gc", function()
     local has_changes = vim.fn.systemlist('git diff-index --quiet HEAD --')
     if #!has_changes then
-        print("No changes");
+        vim.cmd("!echo 'No changes'");
         return
     end
     local commit_msg = vim.fn.input("Commit: ");
