@@ -1,4 +1,9 @@
-require'toggleterm'.setup({size = 20, start_in_insert = true, direction = "tab"});
+require'toggleterm'.setup({
+    start_in_insert = true,
+    direction = "tab",
+    shade_terminals = true,
+    persist_mode = true
+});
 
 function _G.execute_term(num) require("toggleterm").exec("", num) end
 vim.api.nvim_set_keymap('n', '\\1', '<cmd>lua execute_term(1)<CR>',
