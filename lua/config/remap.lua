@@ -40,8 +40,38 @@ vim.keymap.set("n", "<leader>c", function()
         if commit_msg == "" then
             print("Empty commit message. Commit aborted.")
         else
-            commit_msg = commit_msg:gsub(",%s?", "\n");
-            os.execute('git add . && git commit -m ' .. vim.fn.shellescape(commit_msg))
+            commit_msg = commit_msg:gsub(",%s*", "\n")
+            vim.fn.jobstart('git add . && git commit -m ' .. vim.fn.shellescape(commit_msg), {
+                on_exit = function(_j, return_val)
+                    if return_val == 0 then
+                        print("Commit Successful")
+                    else
+                        print("Commit Failed")
+                    end
+                end
+            })
         end
     end
+end)
+
+vim.keymap.set("n", "<leader>gp", function()
+    local handle = io.popen('git rev-parse --abbrev-ref HEAD')
+    local current_branch = handle:read("*a"):gsub("\n", "")
+    handle:close()
+
+    vim.fn.jobstart('git push origin ' .. current_branch, {
+        on_stderr = function(j, data, event)
+            local error_msg = data[1]
+            if string.match(error_msg, 'has no upstream branch') then
+                vim.fn.jobstart('git push --set-upstream origin ' .. current_branch)
+            end
+        end,
+        on_exit = function(j, return_val, event)
+            if return_val == 0 then
+                print("Push Successful")
+            else
+                print("Push Failed")
+            end
+        end
+    })
 end)
