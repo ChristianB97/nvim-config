@@ -59,12 +59,12 @@ vim.keymap.set("n", "<leader>p", function()
     local check_changes = io.popen('git diff --exit-code')
     local changes = check_changes:read("*a")
     check_changes:close()
-    
+
     if changes ~= "" then
         print("(≖_≖ ) Nothing commited")
         return
     end
-    
+
     local handle = io.popen('git rev-parse --abbrev-ref HEAD')
     local current_branch = handle:read("*a"):gsub("\n", "")
     handle:close()
