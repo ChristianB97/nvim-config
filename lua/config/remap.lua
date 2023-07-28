@@ -43,7 +43,7 @@ end)
 
 vim.keymap.set("n", "<leader>gc", function()
     local has_changes = vim.fn.systemlist('git diff-index --quiet HEAD --')
-    if #!has_changes then
+    if not has_changes then
         vim.cmd("!echo 'No changes'");
         return
     end
