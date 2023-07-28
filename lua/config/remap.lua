@@ -40,7 +40,7 @@ vim.keymap.set("n", "<leader>c", function()
         if commit_msg == "" then
             print("Empty commit message. Commit aborted.")
         else
-            commit_msg = commit_msg:gsub(",", "\n")
+            commit_msg = commit_msg:gsub(",%s*", "\n")
             os.execute('git add . && git commit -m ' .. vim.fn.shellescape(commit_msg))
         end
     end
