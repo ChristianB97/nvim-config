@@ -41,7 +41,7 @@ vim.keymap.set("n", "<leader><leader>", function()
 	vim.cmd("so")
 end)
 
-vim.keymap.set("n", "<leader>gc", function()
+vim.keymap.set("n", "<leader>gg", function()
     local handle = io.popen('git diff-index --quiet HEAD -- ; echo $?')
     local result = handle:read("*a")
     handle:close()
