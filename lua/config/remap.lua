@@ -65,7 +65,7 @@ vim.keymap.set("n", "<leader>p", function()
     handle_pushed:close()
 
     if not_pushed == "" then
-        print("(≖_≖ ) Nothing to push")
+        print("Nothing to push (≖_≖ )")
         return
     end
 
@@ -80,7 +80,7 @@ vim.keymap.set("n", "<leader>p", function()
             if return_val == 0 then
                 print("Pushed ٩( ᐛ )و")
             else
-                print("P(ノಠ益ಠ)ノ彡PUSH FAILED")
+                print("(ノಠ益ಠ)ノ彡PUSH FAILED")
             end
         end
     })
