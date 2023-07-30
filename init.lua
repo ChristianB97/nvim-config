@@ -1,2 +1,2 @@
-require("packages");
+require("general");
 require("remaps");
