@@ -11,7 +11,8 @@ vim.keymap.set("n", "<leader>gc", function()
             print("┐(´•_•`)┌ Empty commit message")
         else
             commit_msg = commit_msg:gsub(",%s*", "\n")
-            vim.fn.jobstart('git add . && git commit -m ' .. vim.fn.shellescape(commit_msg), {
+            vim.fn.jobstart('git add . && git commit -m ' ..
+                                vim.fn.shellescape(commit_msg), {
                 on_exit = function(_j, return_val)
                     if return_val == 0 then
                         print("Committed ٩(ˊᗜˋ*)و")
@@ -24,13 +25,13 @@ vim.keymap.set("n", "<leader>gc", function()
     end
 end)
 
-
 vim.keymap.set("n", "<leader>gp", function()
     local handle = io.popen('git rev-parse --abbrev-ref HEAD')
     local current_branch = handle:read("*a"):gsub("\n", "")
     handle:close()
 
-    local handle_upstream = io.popen('git rev-parse --abbrev-ref --symbolic-full-name @{upstream} 2> /dev/null')
+    local handle_upstream = io.popen(
+                                'git rev-parse --abbrev-ref --symbolic-full-name @{upstream} 2> /dev/null')
     local upstream_branch = handle_upstream:read("*a")
     handle_upstream:close()
 
@@ -55,7 +56,8 @@ vim.keymap.set("n", "<leader>gp", function()
         on_stderr = function(j, data, event)
             local error_msg = data[1]
             if string.match(error_msg, 'no upstream branch') then
-                vim.fn.jobstart('git push --set-upstream origin ' .. current_branch)
+                vim.fn.jobstart('git push --set-upstream origin ' ..
+                                    current_branch)
             end
         end,
         on_exit = function(j, return_val, event)
@@ -72,7 +74,8 @@ vim.keymap.set("n", "<leader>gp", function()
     local current_branch = handle:read("*a"):gsub("\n", "")
     handle:close()
 
-    local handle_upstream = io.popen('git rev-parse --abbrev-ref --symbolic-full-name @{upstream} 2> /dev/null')
+    local handle_upstream = io.popen(
+                                'git rev-parse --abbrev-ref --symbolic-full-name @{upstream} 2> /dev/null')
     local upstream_branch = handle_upstream:read("*a")
     handle_upstream:close()
 
@@ -97,7 +100,8 @@ vim.keymap.set("n", "<leader>gp", function()
         on_stderr = function(j, data, event)
             local error_msg = data[1]
             if string.match(error_msg, 'no upstream branch') then
-                vim.fn.jobstart('git push --set-upstream origin ' .. current_branch)
+                vim.fn.jobstart('git push --set-upstream origin ' ..
+                                    current_branch)
             end
         end,
         on_exit = function(j, return_val, event)
@@ -109,15 +113,15 @@ vim.keymap.set("n", "<leader>gp", function()
         end
     })
 end)
-
 
 vim.keymap.set("n", "<leader>gb", function()
     local branch_name = vim.fn.input("New branch (~˘▾˘)~ ")
     if branch_name ~= "" then
-        local handle = io.popen('git checkout -b ' .. vim.fn.shellescape(branch_name) .. ' 2>&1')
+        local handle = io.popen('git checkout -b ' ..
+                                    vim.fn.shellescape(branch_name) .. ' 2>&1')
         local result = handle:read("*a")
         handle:close()
-        
+
         if string.find(result, "Switched to a new branch") then
             print("(･o･)ง Branch created and switched to: " .. branch_name)
         else
@@ -131,7 +135,8 @@ end)
 vim.keymap.set("n", "<leader>gs", function()
     local branch_name = vim.fn.input("Goto branch (~˘▾˘)~ ")
     if branch_name ~= "" then
-        local handle = io.popen('git checkout ' .. vim.fn.shellescape(branch_name) .. ' 2>&1')
+        local handle = io.popen('git checkout ' ..
+                                    vim.fn.shellescape(branch_name) .. ' 2>&1')
         local result = handle:read("*a")
         handle:close()
 
@@ -153,7 +158,8 @@ vim.keymap.set("n", "<leader>gl", function()
     vim.fn.jobstart('git pull origin ' .. current_branch, {
         on_stderr = function(j, data, event)
             local error_msg = data[1]
-            if string.match(error_msg, 'There is no tracking information for the current branch Σ(°ロ°)') then
+            if string.match(error_msg,
+                            'There is no tracking information for the current branch Σ(°ロ°)') then
                 print("There is no upstream branch to pull from (≖_≖ )")
                 return
             end
