@@ -144,3 +144,27 @@ vim.keymap.set("n", "<leader>gs", function()
         print("┐(´•_•`)┌ No branch name provided")
     end
 end)
+
+vim.keymap.set("n", "<leader>gl", function()
+    local handle = io.popen('git rev-parse --abbrev-ref HEAD')
+    local current_branch = handle:read("*a"):gsub("\n", "")
+    handle:close()
+
+    vim.fn.jobstart('git pull origin ' .. current_branch, {
+        on_stderr = function(j, data, event)
+            local error_msg = data[1]
+            if string.match(error_msg, 'There is no tracking information for the current branch Σ(°ロ°)') then
+                print("There is no upstream branch to pull from (≖_≖ )")
+                return
+            end
+        end,
+        on_exit = function(j, return_val, event)
+            if return_val == 0 then
+                print("Pulled \\(^ヮ^)/")
+            else
+                print("(ノಠ益ಠ)ノ彡PULL FAILED")
+            end
+        end
+    })
+end)
+
