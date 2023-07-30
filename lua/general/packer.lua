@@ -58,4 +58,5 @@ return require("packer").startup(function(use)
 	})
 	use("sbdchd/neoformat")
         use {"akinsho/toggleterm.nvim", tag = '*'}
+    use("tpope/vim-eunuch")
 end)
