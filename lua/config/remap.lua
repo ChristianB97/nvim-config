@@ -41,7 +41,7 @@ vim.keymap.set("n", "<leader>gc", function()
             vim.fn.jobstart('git add . && git commit -m ' .. vim.fn.shellescape(commit_msg), {
                 on_exit = function(_j, return_val)
                     if return_val == 0 then
-                        print("Commited ٩(ˊᗜˋ*)و")
+                        print("Committed ٩(ˊᗜˋ*)و")
                     else
                         print("(ノಠ益ಠ)ノ彡COMMIT FAILED")
                     end
