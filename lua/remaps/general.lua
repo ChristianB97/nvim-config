@@ -25,3 +25,7 @@ vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
 vim.keymap.set("n", "<leader>s",
                [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", {silent = true})
+
+vim.api.nvim_set_keymap('v', '<C-c>', '"+y', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<C-v>', '"+p', {noremap = true})
+vim.api.nvim_set_keymap('i', '<C-v>', '<C-r>+', {noremap = true})
