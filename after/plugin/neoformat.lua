@@ -1,6 +1,6 @@
 vim.cmd([[
 augroup fmt
   autocmd!
-  silent! autocmd BufWritePre * undojoin | Neoformat
+    autocmd BufWritePre * if exists(':Neoformat') | silent! undojoin | Neoformat | endif
 augroup END
 ]])
