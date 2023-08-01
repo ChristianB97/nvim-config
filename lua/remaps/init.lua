@@ -1,3 +1,3 @@
-require("remaps.general")
-require("remaps.cheatsheet")
-require("remaps.git")
+require("remaps.general.remaps")
+require("remaps.cheatsheet.remaps")
+require("remaps.git.remaps")
