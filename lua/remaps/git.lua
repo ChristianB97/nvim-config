@@ -135,42 +135,43 @@ end)
 vim.keymap.set("n", "<leader>gs", function()
     local branch_substring = vim.fn.input("Goto branch (~˘▾˘)~ ")
 
-    if branch_substring == "" then
-        print("┐(´•_•`)┌ No branch name provided")
-        return;
-    end
-
-    local handle = io.popen('git branch')
-    local all_branches = handle:read("*a")
-    handle:close()
-
-    local matching_branches = {}
-    for branch in all_branches:gmatch("%S+") do
-        if branch:find(branch_substring) then
-            table.insert(matching_branches, branch)
-        end
-    end
-
-    if #matching_branches == 0 then
-        print("(•ิ_•ิ)? No branch found with substring " ..
-                  branch_substring)
-    elseif #matching_branches > 1 then
-        print("(•ิ_•ิ)? Multiple branches found: " ..
-                  table.concat(matching_branches, ', '))
-    else
-        local branch_name = matching_branches[1]
-        local handle = io.popen('git checkout ' ..
-                                    vim.fn.shellescape(branch_name) .. ' 2>&1')
-        local result = handle:read("*a")
+    if branch_substring ~= "" then
+        local handle = io.popen('git branch')
+        local all_branches = handle:read("*a")
         handle:close()
 
-        if string.find(result, "Switched to branch") then
-            print("(･o･)ง Branch switched to " .. branch_name)
-        else
-            print("(•ิ_•ิ)? Failed to switch to " .. branch_name)
+        local matching_branches = {}
+        for branch in all_branches:gmatch("%S+") do
+            if branch:find(branch_substring) then
+                table.insert(matching_branches, branch)
+            end
         end
-    end
 
+        if #matching_branches == 0 then
+            print("(•ิ_•ิ)? No branch found with substring " ..
+                      branch_substring)
+        elseif #matching_branches > 1 then
+            print("(•ิ_•ิ)? Multiple branches found: " ..
+                      table.concat(matching_branches, ', '))
+        else
+            local branch_name = matching_branches[1]
+            local handle = io.popen('git checkout ' ..
+                                        vim.fn.shellescape(branch_name) ..
+                                        ' 2>&1')
+            local result = handle:read("*a")
+            handle:close()
+
+            if string.find(result, "Switched to branch") then
+                print("(･o･)ง Branch switched to " .. branch_name)
+            elseif string.find(result, "Already on") then
+                print("(･o･)ง Already on " .. branch_name)
+            else
+                print("(•ิ_•ิ)? Failed to switch to " .. branch_name)
+            end
+        end
+    else
+        print("┐(´•_•`)┌ No branch name provided")
+    end
 end)
 
 vim.keymap.set("n", "<leader>gl", function()
