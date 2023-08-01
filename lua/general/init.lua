@@ -1,1 +1,1 @@
-require("general.set")
+require("general.vim-settings")

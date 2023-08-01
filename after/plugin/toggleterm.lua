@@ -2,7 +2,8 @@ require'toggleterm'.setup({
     start_in_insert = true,
     direction = "tab",
     shade_terminals = true,
-    persist_mode = true
+    persist_mode = true,
+    winbar = {enabled = false}
 });
 
 function _G.execute_term(num) require("toggleterm").exec("", num) end
