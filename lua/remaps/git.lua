@@ -115,7 +115,7 @@ vim.keymap.set("n", "<leader>gp", function()
     })
 end)
 
-vim.keymap.set("n", "<leader>gb", function()
+vim.keymap.set("n", "<leader>gn", function()
     local branch_name = vim.fn.input("New branch (~˘▾˘)~ ")
     if branch_name ~= "" then
         local handle = io.popen('git checkout -b ' ..
@@ -133,7 +133,7 @@ vim.keymap.set("n", "<leader>gb", function()
     end
 end)
 
-vim.keymap.set("n", "<leader>gs", function()
+vim.keymap.set("n", "<leader>gb", function()
     local branch_substring = vim.fn.input("Goto branch (~˘▾˘)~ ")
 
     if branch_substring ~= "" then
