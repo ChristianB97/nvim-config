@@ -151,7 +151,7 @@ vim.keymap.set("n", "<leader>gs", function()
             print("(•ิ_•ิ)? No branch found with substring " ..
                       branch_substring)
         elseif #matching_branches > 1 then
-            print("(•ิ_•ิ)? Multiple branches found: " ..
+            print("(＠_＠) Multiple branches found: " ..
                       table.concat(matching_branches, ', '))
         else
             local branch_name = matching_branches[1]
@@ -164,7 +164,7 @@ vim.keymap.set("n", "<leader>gs", function()
             if string.find(result, "Switched to branch") then
                 print("(･o･)ง Branch switched to " .. branch_name)
             elseif string.find(result, "Already on") then
-                print("(･o･)ง Already on " .. branch_name)
+                print("(￣～￣;) Already on " .. branch_name)
             else
                 print("(•ิ_•ิ)? Failed to switch to " .. branch_name)
             end
