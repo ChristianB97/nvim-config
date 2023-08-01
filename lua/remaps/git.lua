@@ -210,7 +210,7 @@ vim.keymap.set("n", "<leader>gs", function()
     end
 
     if #filenames == 0 then
-        print("No changes (≖_≖ )")
+        print("No changes (⌐■_■)")
     else
         print("CHANGES: " .. table.concat(filenames, ', '))
     end
