@@ -96,6 +96,7 @@ vim.keymap.set("n", "<leader>gp", function()
         return
     end
 
+    print("Pushing started...")
     vim.fn.jobstart('git push origin ' .. current_branch, {
         on_stderr = function(j, data, event)
             local error_msg = data[1]
