@@ -69,6 +69,7 @@ vim.keymap.set("n", "<leader>gp", function()
         end
     })
 end)
+
 vim.keymap.set("n", "<leader>gp", function()
     local handle = io.popen('git rev-parse --abbrev-ref HEAD')
     local current_branch = handle:read("*a"):gsub("\n", "")
