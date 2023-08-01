@@ -96,7 +96,7 @@ vim.keymap.set("n", "<leader>gp", function()
         return
     end
 
-    print("Pushing started...")
+    print("Pushing started ...")
     vim.fn.jobstart('git push origin ' .. current_branch, {
         on_stderr = function(j, data, event)
             local error_msg = data[1]
@@ -199,3 +199,19 @@ vim.keymap.set("n", "<leader>gl", function()
     })
 end)
 
+vim.keymap.set("n", "<leader>gs", function()
+    local handle = io.popen('git status --porcelain')
+    local status = handle:read("*a")
+    handle:close()
+
+    local filenames = {}
+    for filename in status:gmatch("[MADRCU?! ][M? ][\t ]*(%S+)") do
+        table.insert(filenames, filename)
+    end
+
+    if #filenames == 0 then
+        print("No changes (≖_≖ )")
+    else
+        print("CHANGES: " .. table.concat(filenames, ', '))
+    end
+end)
