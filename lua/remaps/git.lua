@@ -133,8 +133,32 @@ vim.keymap.set("n", "<leader>gb", function()
 end)
 
 vim.keymap.set("n", "<leader>gs", function()
-    local branch_name = vim.fn.input("Goto branch (~˘▾˘)~ ")
-    if branch_name ~= "" then
+    local branch_substring = vim.fn.input("Goto branch (~˘▾˘)~ ")
+
+    if branch_substring == "" then
+        print("┐(´•_•`)┌ No branch name provided")
+        return;
+    end
+
+    local handle = io.popen('git branch')
+    local all_branches = handle:read("*a")
+    handle:close()
+
+    local matching_branches = {}
+    for branch in all_branches:gmatch("%S+") do
+        if branch:find(branch_substring) then
+            table.insert(matching_branches, branch)
+        end
+    end
+
+    if #matching_branches == 0 then
+        print("(•ิ_•ิ)? No branch found with substring " ..
+                  branch_substring)
+    elseif #matching_branches > 1 then
+        print("(•ิ_•ิ)? Multiple branches found: " ..
+                  table.concat(matching_branches, ', '))
+    else
+        local branch_name = matching_branches[1]
         local handle = io.popen('git checkout ' ..
                                     vim.fn.shellescape(branch_name) .. ' 2>&1')
         local result = handle:read("*a")
@@ -145,9 +169,8 @@ vim.keymap.set("n", "<leader>gs", function()
         else
             print("(•ิ_•ิ)? Failed to switch to " .. branch_name)
         end
-    else
-        print("┐(´•_•`)┌ No branch name provided")
     end
+
 end)
 
 vim.keymap.set("n", "<leader>gl", function()

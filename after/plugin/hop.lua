@@ -1,5 +1,4 @@
-require'hop'.setup({
-    keys = "etovxqpdygfblzhckisuran",
-})
+require'hop'.setup({keys = "etovxqpdygfblzhckisuran"})
 
-vim.api.nvim_set_keymap('n', '<leader>h', ':HopWord<CR>', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<leader>h', ':HopWord<CR>',
+                        {noremap = true, silent = true})
