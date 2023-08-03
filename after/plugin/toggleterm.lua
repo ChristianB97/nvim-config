@@ -25,13 +25,8 @@ vim.api.nvim_set_keymap('n', '\\8', '<cmd>lua execute_term(8)<CR>',
                         {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '\\9', '<cmd>lua execute_term(9)<CR>',
                         {noremap = true, silent = true})
--- continue as needed up to '\\9'
-
--- For 10th terminal, use 0 as shortcut
 vim.api.nvim_set_keymap('n', '\\0', '<cmd>lua execute_term(10)<CR>',
                         {noremap = true, silent = true})
-
---- To make \\ close the current terminal regardless of the mode
 vim.api.nvim_set_keymap('n', '\\\\', ':ToggleTerm<CR>',
                         {noremap = true, silent = true})
 vim.api.nvim_set_keymap('t', '\\\\', '<C-\\><C-n>:ToggleTerm<CR>',
