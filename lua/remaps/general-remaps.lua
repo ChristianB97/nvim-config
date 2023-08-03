@@ -29,3 +29,9 @@ vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", {silent = true})
 vim.api.nvim_set_keymap('v', '<C-c>', '"+y', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<C-v>', '"+p', {noremap = true})
 vim.api.nvim_set_keymap('i', '<C-v>', '<C-r>+', {noremap = true})
+
+vim.api.nvim_set_keymap('n', '<C-w>', '<C-w>w', {silent = true, noremap = true})
+vim.api.nvim_set_keymap('t', '<C-w>', '<C-\\><C-n><C-w>w',
+                        {silent = true, noremap = true})
+vim.api.nvim_set_keymap('t', '<Esc>', '<C-\\><C-n>', {noremap = true})
+
