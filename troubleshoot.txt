@@ -1,2 +1,6 @@
 1. JS/TS LSP does not work
 -> Install the most current version of npm
+
+2. Parser problems?
+-> TSInstall <name>/all
+-> Or ensure it is installed in the config
