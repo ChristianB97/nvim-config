@@ -1,0 +1,2 @@
+1. JS/TS LSP does not work
+-> Install the most current version of npm
