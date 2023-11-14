@@ -4,3 +4,6 @@
 2. Parser problems?
 -> TSInstall <name>/all
 -> Or ensure it is installed in the config
+
+3. Luaformatter does not install
+- Install CMake
