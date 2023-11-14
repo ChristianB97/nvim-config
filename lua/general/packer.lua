@@ -48,4 +48,9 @@ return require("packer").startup(function(use)
     use {"akinsho/toggleterm.nvim", tag = '*'}
     use("tpope/vim-eunuch")
     use("phaazon/hop.nvim")
+    use 'simrat39/rust-tools.nvim'
+
+    -- Debugging
+    use 'nvim-lua/plenary.nvim'
+    use 'mfussenegger/nvim-dap'
 end)
