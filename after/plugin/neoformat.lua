@@ -1,6 +1,7 @@
-vim.cmd([[
-augroup fmt
-  autocmd!
-    autocmd BufWritePre * if exists(':Neoformat') | silent! undojoin | Neoformat | endif
-augroup END
-]])
+vim.api.nvim_exec([[
+  augroup fmt
+    autocmd!
+    autocmd BufWritePre * silent! undojoin | execute 'Neoformat'
+  augroup END
+]], false)
+

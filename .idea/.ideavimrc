@@ -1,0 +1,20 @@
+let mapleader=" "
+
+set scrolloff=5
+set incsearch
+map Q gq
+Plug 'machakann/vim-highlightedyank'
+Plug 'tpope/vim-commentary'
+Plug "tpope/vim-surround"
+
+"" Map \r to the Reformat Code action
+map <leader>r <Action>(ReformatCode)
+map <leader>d <Action>(Debug)
+map <leader>b <Action>(ToggleLineBreakpoint)
+map <leader>gc <Action>(ChangesView.Commit)
+nnoremap <leader>rr :action Refactorings.QuickListPopupAction<CR>
+nnoremap <leader>s :action RenameElement<CR>
+nnoremap <leader>oi :action OptimizeImports<CR>
+
+nnoremap <c-o> :action Back<cr>
+nnoremap <c-i> :action Forward<cr>
