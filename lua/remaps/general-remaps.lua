@@ -35,3 +35,8 @@ vim.api.nvim_set_keymap('t', '<C-w>', '<C-\\><C-n><C-w>w',
                         {silent = true, noremap = true})
 vim.api.nvim_set_keymap('t', '<Esc>', '<C-\\><C-n>', {noremap = true})
 
+vim.api.nvim_set_keymap('n', '<S-i>', ':bprev<CR>',
+                        {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<S-o>', ':bnext<CR>',
+                        {noremap = true, silent = true})
+

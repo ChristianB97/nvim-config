@@ -1,4 +1,6 @@
-- vim surround
-- go back after go definition??
+1. vim surround
+2. nerdtree
+3. omnisharp?
+4. Debugging
+5. Dotnet Testing
 
-test
