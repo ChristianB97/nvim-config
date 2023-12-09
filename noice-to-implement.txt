@@ -3,4 +3,5 @@
 3. omnisharp?
 4. Debugging
 5. Dotnet Testing
+6. Autopilot
 
