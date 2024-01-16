@@ -7,3 +7,6 @@
 
 3. Luaformatter does not install
 - Install CMake
+
+4. No debugging in C#
+- Install netcoredbg

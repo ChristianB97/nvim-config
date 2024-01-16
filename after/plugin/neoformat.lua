@@ -3,5 +3,6 @@ vim.api.nvim_exec([[
     autocmd!
     autocmd BufWritePre * silent! undojoin | execute 'Neoformat'
   augroup END
+
 ]], false)
 

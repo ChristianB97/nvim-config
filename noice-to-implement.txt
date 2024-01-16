@@ -1,6 +1,3 @@
-- nerdtree
-- omnisharp?
 - Debugging
 - Dotnet Testing
 - Autopilot
-

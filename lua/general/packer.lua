@@ -3,11 +3,9 @@ vim.cmd([[packadd packer.nvim]])
 return require("packer").startup(function(use)
     -- Packer can manage itself
     use("wbthomason/packer.nvim")
-
     use({
         "nvim-telescope/telescope.nvim",
-        tag = "0.1.1",
-        -- or                            , branch = '0.1.x',
+        tag = "0.1.5",
         requires = {{"nvim-lua/plenary.nvim"}}
     })
     use({
@@ -37,10 +35,10 @@ return require("packer").startup(function(use)
         requires = {
             -- LSP Support
             {"neovim/nvim-lspconfig"}, {"williamboman/mason.nvim"},
-            {"williamboman/mason-lspconfig.nvim"}, -- Autocompletion
-            {"hrsh7th/nvim-cmp"}, {"hrsh7th/cmp-buffer"}, {"hrsh7th/cmp-path"},
+            {"williamboman/mason-lspconfig.nvim"}, {"hrsh7th/nvim-cmp"},
+            {"hrsh7th/cmp-buffer"}, {"hrsh7th/cmp-path"},
             {"saadparwaiz1/cmp_luasnip"}, {"hrsh7th/cmp-nvim-lsp"},
-            {"hrsh7th/cmp-nvim-lua"}, -- Snippets
+            {"hrsh7th/cmp-nvim-lua"}, {"hrsh7th/cmp-cmdline"},
             {"L3MON4D3/LuaSnip"}, {"rafamadriz/friendly-snippets"}
         }
     })
@@ -49,4 +47,8 @@ return require("packer").startup(function(use)
     use("tpope/vim-eunuch")
     use("tpope/vim-surround")
     use("phaazon/hop.nvim")
+    use("stevearc/oil.nvim")
+    use("olekatpyle/xunit.nvim")
+    use("nvim-tree/nvim-web-devicons")
+    use('mfussenegger/nvim-dap')
 end)
