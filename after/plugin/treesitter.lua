@@ -4,7 +4,8 @@ require'nvim-treesitter.configs'.setup {
         "c", "c_sharp", "lua", "vim", "vimdoc", "query", "javascript",
         "typescript", "go", "html", "bash", "css", "json", "lua", "prisma",
         "rust", "gitignore", "gitcommit", "gitattributes", "git_config",
-        "git_rebase"
+        "git_rebase", "c_sharp"
+
     },
 
     -- Install parsers synchronously (only applied to `ensure_installed`)
